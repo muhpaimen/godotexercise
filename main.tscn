@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://b8d4m0h28qlcy"]
+
+[ext_resource type="Texture2D" uid="uid://dfdug3ig3y3bm" path="res://assets/box.png" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://bgnslndhbybdi" path="res://assets/soul.png" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://4r4iradwlgno" path="res://script/soul.gd" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://cvva4qnb315wu" path="res://script/attackspawner.gd" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://ba7pibm2wd06y" path="res://scenes/soultex.gd" id="4_7mycd"]
+[ext_resource type="Script" uid="uid://4hxodww70iw4" path="res://playerhitenemy.gd" id="4_lquwl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+
+[node name="Node2D" type="Node2D" unique_id=2076042495]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=42657385]
+offset_left = -107.0
+offset_top = -76.0
+offset_right = 1260.0
+offset_bottom = 756.0
+color = Color(0, 0, 0, 1)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1646483552]
+position = Vector2(576, 324)
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1439643532]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Node2D" unique_id=33389719]
+texture_filter = 1
+offset_left = 173.0
+offset_top = 151.0
+offset_right = 215.0
+offset_bottom = 191.0
+scale = Vector2(9, 9)
+texture = ExtResource("1_ig7tw")
+region_rect = Rect2(0.1315918, 0.22494662, 24.612257, 24.550726)
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Node2D" unique_id=1829926265 groups=["player"]]
+texture_filter = 1
+position = Vector2(232, 325)
+scale = Vector2(6.5, 6.5)
+script = ExtResource("2_h2yge")
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/CharacterBody2D" unique_id=1303892457]
+texture = ExtResource("2_0xm2m")
+script = ExtResource("4_7mycd")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node2D/CharacterBody2D" unique_id=721114823]
+polygon = PackedVector2Array(2.9230766, 0, -1.2307701, -3.2307663, -3.3846169, -1.384613, -1.0769234, -0.15384293, -3.23077, 1.5384636, -0.9230766, 3.3846169)
+
+[node name="Area2D" type="Area2D" parent="Node2D/CharacterBody2D" unique_id=2111556382 groups=["player"]]
+collision_mask = 3
+script = ExtResource("4_lquwl")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node2D/CharacterBody2D/Area2D" unique_id=509005241]
+polygon = PackedVector2Array(3.2307663, 0, -1.2307701, -3.384613, -3.5384636, -1.384613, -1.2307701, -0.15384293, -3.3846169, 1.5384636, -0.9230766, 3.5384636)
+
+[node name="Timer" type="Timer" parent="Node2D/CharacterBody2D" unique_id=890012880]
+
+[node name="bigshottimer" type="Timer" parent="Node2D/CharacterBody2D" unique_id=414456894]
+
+[node name="bulletpattern" type="Node2D" parent="." unique_id=461631038]
+position = Vector2(922, 324)
+script = ExtResource("4_1bvp3")
+
+[node name="Timer" type="Timer" parent="bulletpattern" unique_id=1327642573]
+wait_time = 4.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=830374603]
+position = Vector2(1257, 379)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1319238392]
+position = Vector2(-10, -35)
+scale = Vector2(1.238578, 41.623314)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[connection signal="area_entered" from="Node2D/CharacterBody2D/Area2D" to="Node2D/CharacterBody2D/Area2D" method="_on_area_entered"]
+[connection signal="gothit" from="Node2D/CharacterBody2D/Area2D" to="Node2D/CharacterBody2D" method="_on_area_2d_gothit"]
+[connection signal="timeout" from="Node2D/CharacterBody2D/Timer" to="Node2D/CharacterBody2D" method="_on_timer_timeout"]
+[connection signal="timeout" from="Node2D/CharacterBody2D/bigshottimer" to="Node2D/CharacterBody2D" method="_on_bigshottimer_timeout"]

@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://kmcifei67wu2"]
+
+[ext_resource type="Script" uid="uid://pla7ma3tgd1x" path="res://script/enemy.gd" id="1_48w1d"]
+[ext_resource type="Texture2D" uid="uid://dwxowcq0ncv6h" path="res://assets/ghost.png" id="1_auhge"]
+[ext_resource type="Script" uid="uid://dvhiubiurydiq" path="res://scenes/enemyhitplayer.gd" id="3_0bbp8"]
+
+[node name="Node2D" type="Node2D" unique_id=322946324]
+
+[node name="enemy" type="CharacterBody2D" parent="." unique_id=334356005 groups=["enemies"]]
+position = Vector2(19, 6)
+collision_layer = 3
+script = ExtResource("1_48w1d")
+
+[node name="Sprite2D" type="Sprite2D" parent="enemy" unique_id=98639136]
+texture_filter = 1
+scale = Vector2(6.5, 6.5)
+texture = ExtResource("1_auhge")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="enemy" unique_id=141340987]
+position = Vector2(-19, -4)
+scale = Vector2(3.0081613, 3.4277306)
+polygon = PackedVector2Array(-5.6512923, -9.335623, 4.9864345, -9.335623, 9.64044, -5.543026, 9.64044, 3.7925968, 2.9918606, 9.9191, -3.3242898, 9.9191, -9.972868, 4.0843353, -9.972868, -5.543026)
+
+[node name="Hitbox" type="Area2D" parent="enemy" unique_id=27755834 groups=["enemies"]]
+collision_layer = 3
+script = ExtResource("3_0bbp8")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="enemy/Hitbox" unique_id=403807779]
+position = Vector2(-19, -4)
+scale = Vector2(3.0081613, 3.4277306)
+polygon = PackedVector2Array(-5.6512923, -9.62736, 4.9864345, -9.62736, 9.972869, -5.543026, 9.972869, 3.7925968, 3.3242896, 10.210837, -3.6567185, 9.9191, -10.305298, 3.7925968, -10.305298, -5.543026)
+
+[connection signal="body_entered" from="enemy/Hitbox" to="enemy/Hitbox" method="_on_body_entered"]

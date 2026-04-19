@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://omyxla70nqx7"]
+
+[ext_resource type="Texture2D" uid="uid://bpayi2wnpum4l" path="res://assets/shootbig.png" id="1_66ec6"]
+[ext_resource type="Script" uid="uid://bswhvuxiv3ot8" path="res://scenes/bigshot.gd" id="1_efth6"]
+
+[node name="Node2D" type="Node2D" unique_id=452700790]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=15983359]
+script = ExtResource("1_efth6")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=1336896386]
+texture_filter = 1
+scale = Vector2(6.5, 6.5)
+texture = ExtResource("1_66ec6")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=782729659]
+position = Vector2(42, 0)
+scale = Vector2(3.9321578, 2.1716318)
+polygon = PackedVector2Array(10.172531, 0.46048322, 6.6121464, -10.591114, -9.663905, 0, 6.6121464, 10.591114)
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
