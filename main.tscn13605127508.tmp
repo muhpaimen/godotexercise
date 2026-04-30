@@ -8,9 +8,9 @@
 [ext_resource type="Script" uid="uid://4hxodww70iw4" path="res://playerhitenemy.gd" id="4_lquwl"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_7mycd"]
-vertices = PackedVector2Array(1136.1016, 636.46094, 182.07031, 498.35156, 184.92188, 158.63281, 1141.8906, 16.601563)
+vertices = PackedVector2Array(925.1094, 163.9375, 928.8828, 499.96094, 182.07813, 497.03125, 184.90625, 160.04688)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(175, 150, 1152, 5, 1146, 648, 172, 507)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(175, 150, 935, 154, 939, 510, 172, 507)])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 

@@ -3,10 +3,16 @@ extends CharacterBody2D
 @export var speed: int = 300
 @export var bigshot = 0.4
 @export var bulcount = 6
+@export var hp = 7:
+	set(value):
+		hp = value
+		print("yeyyeysos")
+		if value == 0:
+			get_tree().paused = true
 
 @onready var iframetimer = $Timer
 @onready var bstimer = $bigshottimer
-@onready var box = $"../NinePatchRect"
+@onready var box = $"../../NinePatchRect"
 @onready var bigbullet = preload("res://scenes/bigshot.tscn")
 @onready var smallbullet = preload("res://smallshot.tscn")
 @onready var chgtex = preload("res://assets/soulcc.png")
@@ -40,9 +46,6 @@ func _process(delta: float) -> void:
 				bstimer.start(1.5)
 		holdTimer = 0.0
 		$Sprite2D.uncharge()
-	
-	
-	
 
 func _physics_process(delta):
 	get_input()
@@ -63,6 +66,7 @@ func iframe():
 	tween.set_loops(5)
 	tween.tween_property($Sprite2D,"modulate:a", 0.3, 0.1)
 	tween.tween_property($Sprite2D,"modulate:a", 1.0, 0.1)
+	hp -= 1
 
 func _on_timer_timeout() -> void:
 	$Sprite2D.modulate.a = 1.0

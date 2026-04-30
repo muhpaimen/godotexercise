@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://3ghxu466chq6"]
+
+[ext_resource type="Script" uid="uid://gemuccpm1656" path="res://scenes/signalemitterkaboom.gd" id="1_5v0te"]
+[ext_resource type="Texture2D" uid="uid://d2mdcpum7pv4y" path="res://assets/kaboom.png" id="1_bo4c1"]
+[ext_resource type="Script" uid="uid://bjas58g37xkrm" path="res://scenes/exphitbox.gd" id="1_hoacm"]
+
+[node name="Node2D" type="Node2D" unique_id=396739928]
+script = ExtResource("1_5v0te")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=220327180]
+collision_layer = 2
+script = ExtResource("1_hoacm")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=1811749792]
+z_index = 2
+texture_filter = 1
+scale = Vector2(6.5, 6.5)
+texture = ExtResource("1_bo4c1")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=903573866]
+polygon = PackedVector2Array(-49, -67, 61, -65, 77, -5, 67, 65, -11, 65, -61, 52, -69, -17)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="kaboom" from="Area2D" to="." method="_on_area_2d_kaboom"]

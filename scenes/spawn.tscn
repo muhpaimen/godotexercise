@@ -8,7 +8,7 @@
 
 [node name="enemy" type="CharacterBody2D" parent="." unique_id=334356005 groups=["enemies"]]
 position = Vector2(19, 6)
-collision_layer = 3
+collision_layer = 2
 script = ExtResource("1_48w1d")
 
 [node name="Sprite2D" type="Sprite2D" parent="enemy" unique_id=98639136]
@@ -30,4 +30,5 @@ position = Vector2(-19, -4)
 scale = Vector2(3.0081613, 3.4277306)
 polygon = PackedVector2Array(-5.6512923, -9.62736, 4.9864345, -9.62736, 9.972869, -5.543026, 9.972869, 3.7925968, 3.3242896, 10.210837, -3.6567185, 9.9191, -10.305298, 3.7925968, -10.305298, -5.543026)
 
+[connection signal="area_entered" from="enemy/Hitbox" to="enemy/Hitbox" method="_on_area_entered"]
 [connection signal="body_entered" from="enemy/Hitbox" to="enemy/Hitbox" method="_on_body_entered"]

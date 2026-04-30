@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://ctuvw47j500gg"]
+
+[ext_resource type="Script" uid="uid://bj83qm6oi7pbg" path="res://ghsbmb.gd" id="1_4okwa"]
+[ext_resource type="Texture2D" uid="uid://dus4u8hos81h1" path="res://assets/ghsBOMB.png" id="1_hisaq"]
+[ext_resource type="Script" uid="uid://lyslm3jah7sp" path="res://kamikazesigemit.gd" id="1_r2cpw"]
+[ext_resource type="Script" uid="uid://if78ivcvshjd" path="res://ghsbmbhitbox.gd" id="3_4epsv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hisaq"]
+
+[node name="Node2D" type="Node2D" unique_id=1466540005]
+script = ExtResource("1_r2cpw")
+
+[node name="ghsbmb" type="CharacterBody2D" parent="." unique_id=41245515]
+collision_layer = 2
+script = ExtResource("1_4okwa")
+
+[node name="Sprite2D" type="Sprite2D" parent="ghsbmb" unique_id=1646359875]
+texture_filter = 1
+scale = Vector2(6.5, 6.5)
+texture = ExtResource("1_hisaq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ghsbmb" unique_id=1428485768]
+position = Vector2(-8, -11.999999)
+scale = Vector2(3.350407, 3.5778375)
+shape = SubResource("CircleShape2D_hisaq")
+
+[node name="hitbox" type="Area2D" parent="ghsbmb" unique_id=531473855]
+script = ExtResource("3_4epsv")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ghsbmb/hitbox" unique_id=579526946]
+polygon = PackedVector2Array(-41, -48, -28, -56, -5, -55, 25, -43, 29, -15, 25, 22, -5, 29, -41, 14, -48, -10)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="ghsbmb" unique_id=1639309550]
+
+[node name="Timer" type="Timer" parent="ghsbmb" unique_id=399229194]
+
+[connection signal="boom" from="ghsbmb" to="." method="_on_ghsbmb_boom"]
+[connection signal="area_entered" from="ghsbmb/hitbox" to="ghsbmb/hitbox" method="_on_area_entered"]
+[connection signal="body_entered" from="ghsbmb/hitbox" to="ghsbmb/hitbox" method="_on_body_entered"]
