@@ -22,17 +22,18 @@ var invis: bool = false
 var holdTimer = 0.0
 var trigger = false
 var bigTrigger = false
+var dialEND = false
 
 func get_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
 	velocity = input_direction * speed
 	
 func _process(delta: float) -> void:
-	if Input.is_action_pressed("shoot"):
+	if Input.is_action_pressed("shoot") and dialEND == true:
 		holdTimer += delta
 		if holdTimer >= bigshot && !bigTrigger:
 			$Sprite2D.charge()
-	if Input.is_action_just_released("shoot"):
+	if Input.is_action_just_released("shoot") and dialEND == true:
 		if holdTimer >= bigshot && !bigTrigger:
 			bigTrigger = true
 			bigshoot()
@@ -93,3 +94,7 @@ func _on_bigshottimer_timeout() -> void:
 	trigger = false
 	if bulcount == 0:
 		bulcount = 6
+
+
+func _on_canvas_layer_startgame() -> void:
+	dialEND = true

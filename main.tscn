@@ -6,6 +6,10 @@
 [ext_resource type="Script" uid="uid://cvva4qnb315wu" path="res://script/attackspawner.gd" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://ba7pibm2wd06y" path="res://scenes/soultex.gd" id="4_7mycd"]
 [ext_resource type="Script" uid="uid://4hxodww70iw4" path="res://playerhitenemy.gd" id="4_lquwl"]
+[ext_resource type="Texture2D" uid="uid://4afshkhpvu1t" path="res://assets/dialbox.png" id="7_272bh"]
+[ext_resource type="FontFile" uid="uid://4pdt1kqivk4a" path="res://assets/DTM-Mono(1).otf" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://cbpu44bp8e2hw" path="res://dialog.gd" id="9_4c57u"]
+[ext_resource type="Texture2D" uid="uid://dmocyo6spg8lb" path="res://assets/smugfach.png" id="9_kek77"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_7mycd"]
 vertices = PackedVector2Array(1136.1016, 636.46094, 182.07031, 498.35156, 184.92188, 158.63281, 1141.8906, 16.601563)
@@ -17,9 +21,9 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(175, 150, 1152, 5, 1146
 [node name="Node2D" type="Node2D" unique_id=2076042495]
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=42657385]
-offset_left = -107.0
+offset_left = -106.0
 offset_top = -76.0
-offset_right = 1260.0
+offset_right = 1261.0
 offset_bottom = 756.0
 color = Color(0, 0, 0, 1)
 
@@ -89,7 +93,44 @@ position = Vector2(-10, -35)
 scale = Vector2(1.238578, 41.623314)
 shape = SubResource("RectangleShape2D_1bvp3")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1614293942]
+script = ExtResource("9_4c57u")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer" unique_id=746383098]
+texture_filter = 1
+offset_left = 23.0
+offset_top = 460.0
+offset_right = 761.0
+offset_bottom = 579.3334
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_272bh")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/NinePatchRect" unique_id=2056722575]
+texture_filter = 1
+layout_mode = 0
+offset_left = 129.33334
+offset_top = 6.0
+offset_right = 733.3334
+offset_bottom = 112.66666
+theme_override_fonts/normal_font = ExtResource("8_5vw27")
+theme_override_font_sizes/normal_font_size = 16
+text = "(slur) (slur) (slur) (slur) (slur) (slur) (slur)"
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/NinePatchRect" unique_id=1329033560]
+texture_filter = 1
+position = Vector2(61.333336, 59.33333)
+scale = Vector2(0.86390644, 0.84003884)
+texture = ExtResource("9_kek77")
+
+[node name="startSignalAnnouncer" type="Node2D" parent="." unique_id=1167163961]
+
 [connection signal="area_entered" from="Node2D/NavigationRegion2D/CharacterBody2D/Area2D" to="Node2D/NavigationRegion2D/CharacterBody2D/Area2D" method="_on_area_entered"]
 [connection signal="gothit" from="Node2D/NavigationRegion2D/CharacterBody2D/Area2D" to="Node2D/NavigationRegion2D/CharacterBody2D" method="_on_area_2d_gothit"]
 [connection signal="timeout" from="Node2D/NavigationRegion2D/CharacterBody2D/Timer" to="Node2D/NavigationRegion2D/CharacterBody2D" method="_on_timer_timeout"]
 [connection signal="timeout" from="Node2D/NavigationRegion2D/CharacterBody2D/bigshottimer" to="Node2D/NavigationRegion2D/CharacterBody2D" method="_on_bigshottimer_timeout"]
+[connection signal="startgame" from="CanvasLayer" to="Node2D/NavigationRegion2D/CharacterBody2D" method="_on_canvas_layer_startgame"]
+[connection signal="startgame" from="CanvasLayer" to="bulletpattern" method="_on_canvas_layer_startgame"]

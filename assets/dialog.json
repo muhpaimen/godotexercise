@@ -1,0 +1,22 @@
+{
+	"Intro"	:	 {
+		"text":	"SLUR SLUR SLUR SLUR SLUR",
+		"face":	"smug",
+		"next":	"next0"
+	},
+	"next0"	:	{
+		"text":	"HAHAHAHAHAHAHa",
+		"face":	"insane",
+		"next":	"next1"
+	},
+	"next1"	:	{
+		"text":	".....eh",
+		"face":	"sad",
+		"next":	"end"
+	},
+	"end"	:	{
+		"text":	"YOUR NO MORE MORE",
+		"face":	"insane",
+		"next":	"NULL"
+	}
+}

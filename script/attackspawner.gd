@@ -44,7 +44,7 @@ func spawner() -> void:
 	kkspawn(Vector2(0, 90))
 	kkspawn(Vector2(0, -90))
 
-func _ready() -> void:
+func _on_canvas_layer_startgame() -> void:
 	$Timer.start(4.0)
 	await $Timer.timeout
 	spawner()
