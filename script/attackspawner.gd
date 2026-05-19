@@ -45,6 +45,7 @@ func spawner() -> void:
 	await $Timer.timeout
 	spawn(Vector2(0, 40))
 	$Timer.start(2)
+	await $Timer.timeout
 	kkspawn()
 	$Timer.start(0.5)
 	await $Timer.timeout
