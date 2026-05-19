@@ -10,6 +10,7 @@
 [ext_resource type="FontFile" uid="uid://4pdt1kqivk4a" path="res://assets/DTM-Mono(1).otf" id="8_5vw27"]
 [ext_resource type="Script" uid="uid://cbpu44bp8e2hw" path="res://dialog.gd" id="9_4c57u"]
 [ext_resource type="Texture2D" uid="uid://dmocyo6spg8lb" path="res://assets/smugfach.png" id="9_kek77"]
+[ext_resource type="Script" uid="uid://b6r7c3tcq6uwt" path="res://walldestroyer.gd" id="11_efxa6"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_7mycd"]
 vertices = PackedVector2Array(1136.1016, 636.46094, 182.07031, 498.35156, 184.92188, 158.63281, 1141.8906, 16.601563)
@@ -17,6 +18,8 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(175, 150, 1152, 5, 1146, 648, 172, 507)])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4c57u"]
 
 [node name="Node2D" type="Node2D" unique_id=2076042495]
 
@@ -128,9 +131,19 @@ texture = ExtResource("9_kek77")
 
 [node name="startSignalAnnouncer" type="Node2D" parent="." unique_id=1167163961]
 
+[node name="walldestroyer" type="Area2D" parent="." unique_id=1673959757]
+position = Vector2(530, 797)
+script = ExtResource("11_efxa6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walldestroyer" unique_id=730060446]
+position = Vector2(42, -21)
+scale = Vector2(73.45294, 0.66153306)
+shape = SubResource("RectangleShape2D_4c57u")
+
 [connection signal="area_entered" from="Node2D/NavigationRegion2D/CharacterBody2D/Area2D" to="Node2D/NavigationRegion2D/CharacterBody2D/Area2D" method="_on_area_entered"]
 [connection signal="gothit" from="Node2D/NavigationRegion2D/CharacterBody2D/Area2D" to="Node2D/NavigationRegion2D/CharacterBody2D" method="_on_area_2d_gothit"]
 [connection signal="timeout" from="Node2D/NavigationRegion2D/CharacterBody2D/Timer" to="Node2D/NavigationRegion2D/CharacterBody2D" method="_on_timer_timeout"]
 [connection signal="timeout" from="Node2D/NavigationRegion2D/CharacterBody2D/bigshottimer" to="Node2D/NavigationRegion2D/CharacterBody2D" method="_on_bigshottimer_timeout"]
 [connection signal="startgame" from="CanvasLayer" to="Node2D/NavigationRegion2D/CharacterBody2D" method="_on_canvas_layer_startgame"]
 [connection signal="startgame" from="CanvasLayer" to="bulletpattern" method="_on_canvas_layer_startgame"]
+[connection signal="body_entered" from="walldestroyer" to="walldestroyer" method="_on_body_entered"]

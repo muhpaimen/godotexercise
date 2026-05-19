@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://b758q6lmv5ppv"]
+
+[ext_resource type="Script" uid="uid://b2snq70ihskxo" path="res://scenes/wallnemy.gd" id="1_38dyf"]
+[ext_resource type="Texture2D" uid="uid://tm623aky7cua" path="res://assets/wallA.png" id="1_vm1vj"]
+[ext_resource type="Texture2D" uid="uid://c2jsvthcsetgu" path="res://assets/wallB.png" id="2_32win"]
+[ext_resource type="Script" uid="uid://c5jpl10w67o8l" path="res://scenes/wall_a.gd" id="2_kgcsj"]
+[ext_resource type="Texture2D" uid="uid://50b2ugb7xrf" path="res://assets/wallC.png" id="3_e5n0l"]
+[ext_resource type="Script" uid="uid://b1s2tc7ialhva" path="res://scenes/wallArea.gd" id="4_oukvt"]
+[ext_resource type="Script" uid="uid://cmiv8gdjuy8gw" path="res://scenes/wall_b.gd" id="5_qkqca"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e5n0l"]
+size = Vector2(35, 186)
+
+[node name="Node2D" type="Node2D" unique_id=421576102]
+script = ExtResource("1_38dyf")
+
+[node name="wallA" type="RigidBody2D" parent="." unique_id=63437050 groups=["wallnemy"]]
+collision_layer = 2
+freeze = true
+script = ExtResource("2_kgcsj")
+
+[node name="Sprite2D" type="Sprite2D" parent="wallA" unique_id=1102611427]
+texture_filter = 1
+scale = Vector2(6.5, 6.5)
+texture = ExtResource("1_vm1vj")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="wallA" unique_id=1075513092]
+polygon = PackedVector2Array(-15, -38, 16, -38, 16, 16, -15, 36)
+
+[node name="Area2D" type="Area2D" parent="wallA" unique_id=2116483691 groups=["enemies", "wallnemy"]]
+collision_layer = 2
+script = ExtResource("4_oukvt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wallA/Area2D" unique_id=1901249521]
+position = Vector2(0.5, 53)
+shape = SubResource("RectangleShape2D_e5n0l")
+
+[node name="wallB" type="RigidBody2D" parent="." unique_id=852029811 groups=["wallnemy"]]
+texture_filter = 1
+position = Vector2(2.3841858e-07, 58)
+collision_layer = 2
+freeze = true
+script = ExtResource("5_qkqca")
+
+[node name="Sprite2D" type="Sprite2D" parent="wallB" unique_id=843314322]
+scale = Vector2(6.5, 6.5)
+texture = ExtResource("2_32win")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="wallB" unique_id=805471614]
+scale = Vector2(6.5, 6.5)
+polygon = PackedVector2Array(2.4615386, -6.4615393, -2.3076923, -3.5384622, -2.3076923, 4.4615383, -3.6679783e-08, 4.4615383, -3.6679783e-08, 3.384615, 2.4615386, 3.384615)
+
+[node name="wallC" type="RigidBody2D" parent="." unique_id=1633248743 groups=["wallnemy"]]
+collision_layer = 2
+freeze = true
+script = ExtResource("2_kgcsj")
+
+[node name="Sprite2D" type="Sprite2D" parent="wallC" unique_id=144595299]
+texture_filter = 1
+position = Vector2(3.8146973e-06, 113)
+scale = Vector2(6.5, 6.5)
+texture = ExtResource("3_e5n0l")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="wallC" unique_id=1207935744]
+polygon = PackedVector2Array(0, 80, 15, 80, 15, 144, -15, 144, -15, 87, 0, 87)
+
+[connection signal="falldown" from="." to="wallA" method="_on_node_2d_falldown"]
+[connection signal="falldown" from="." to="wallB" method="_on_node_2d_falldown"]
+[connection signal="falldown" from="." to="wallC" method="_on_node_2d_falldown"]
+[connection signal="movenow" from="." to="wallA" method="_on_node_2d_movenow"]
+[connection signal="movenow" from="." to="wallB" method="_on_node_2d_movenow"]
+[connection signal="movenow" from="." to="wallC" method="_on_node_2d_movenow"]
+[connection signal="area_entered" from="wallA/Area2D" to="wallA/Area2D" method="_on_area_entered"]
+[connection signal="wallhit" from="wallA/Area2D" to="." method="_on_area_2d_wallhit"]

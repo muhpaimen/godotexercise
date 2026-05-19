@@ -5,7 +5,7 @@
 
 [node name="Node2D" type="Node2D" unique_id=452700790 groups=["playnav"]]
 
-[node name="Area2D" type="Area2D" parent="." unique_id=15983359 groups=["playnav"]]
+[node name="Area2D" type="Area2D" parent="." unique_id=15983359 groups=["bigshot", "playnav"]]
 collision_layer = 3
 collision_mask = 2
 script = ExtResource("1_efth6")

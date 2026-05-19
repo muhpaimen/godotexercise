@@ -9,5 +9,8 @@ func _on_body_entered(body):
 	if body.is_in_group("enemies"):
 		body.hit()
 	
+	if body.is_in_group("wallnemy"):
+		queue_free()
+	
 	if body is StaticBody2D:
 		queue_free()
