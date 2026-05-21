@@ -3,6 +3,7 @@ extends Node2D
 @onready var enemy = preload("res://scenes/spawn.tscn")
 @onready var kamikazenemy = preload("res://kamikaze.tscn")
 @onready var wallnemy = preload("res://scenes/wallnemy.tscn")
+@onready var windarea = preload("res://scenes/windarea.tscn")
 @onready var spawnpoint = $"."
 @onready var player = $"../Node2D/NavigationRegion2D/CharacterBody2D"
 
@@ -26,6 +27,12 @@ func wallspawn(offset: Vector2 = Vector2.ZERO):
 	var newWall = wallnemy.instantiate()
 	add_child(newWall)
 	newWall.global_position = spawnpoint.global_position + offset
+
+func windstart(pos: Vector2): 
+	var winds = windarea.instantiate()
+	add_child(winds)
+	winds.global_position = spawnpoint.global_position + pos
+	return winds
 
 func spawner() -> void:
 	spawn()
@@ -54,7 +61,14 @@ func spawner() -> void:
 	await intval(3)
 	wallspawn()
 	await intval(2)
-	wallspawn()
+	wallspawn(Vector2(0, 50))
+	await intval(2)
+	var windnow = windstart(Vector2(-500, -190))
+	for i in range(18):
+		await intval(0.4)
+		wallspawn(Vector2(-80, 90))
+	await intval(3)
+	windnow.queue_free()
 
 func intval(dura: float):
 	$Timer.start(dura)

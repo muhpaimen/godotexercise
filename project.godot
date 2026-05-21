@@ -22,6 +22,8 @@ player=""
 playnav=""
 wallnemy=""
 bigshot=""
+windstop=""
+windarea=""
 
 [input]
 

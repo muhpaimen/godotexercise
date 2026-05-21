@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bq6abfbys6tft"]
+
+[ext_resource type="Script" uid="uid://ce7l8qduqllcj" path="res://scenes/windarea.gd" id="1_45tr8"]
+[ext_resource type="Texture2D" uid="uid://t8ba0b1ywuff" path="res://assets/windy.png" id="2_45tr8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_45tr8"]
+
+[node name="wind" type="Node2D" unique_id=1360679512]
+
+[node name="windarea" type="Area2D" parent="." unique_id=874972283 groups=["windarea"]]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_45tr8")
+
+[node name="Sprite2D" type="Sprite2D" parent="windarea" unique_id=1262318106]
+z_index = 4
+texture_filter = 1
+scale = Vector2(10.471457, 9.130435)
+texture = ExtResource("2_45tr8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="windarea" unique_id=1343420659]
+scale = Vector2(32.200245, 37.783745)
+shape = SubResource("RectangleShape2D_45tr8")
+
+[connection signal="body_entered" from="windarea" to="windarea" method="_on_body_entered"]

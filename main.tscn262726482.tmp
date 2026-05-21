@@ -69,7 +69,7 @@ script = ExtResource("4_7mycd")
 polygon = PackedVector2Array(2.9230766, 0, -1.2307701, -3.2307663, -3.3846169, -1.384613, -1.0769234, -0.15384293, -3.23077, 1.5384636, -0.9230766, 3.3846169)
 
 [node name="Area2D" type="Area2D" parent="Node2D/NavigationRegion2D/CharacterBody2D" unique_id=2111556382 groups=["player"]]
-collision_mask = 7
+collision_mask = 3
 script = ExtResource("4_lquwl")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node2D/NavigationRegion2D/CharacterBody2D/Area2D" unique_id=509005241]
@@ -148,8 +148,6 @@ position = Vector2(338, 648)
 [node name="StaticBody2D" type="StaticBody2D" parent="windstop" unique_id=393247360 groups=["windstop"]]
 position = Vector2(6, 0)
 scale = Vector2(0.9949733, 1)
-collision_layer = 4
-collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="windstop/StaticBody2D" unique_id=549965549]
 position = Vector2(-6, 0)
@@ -166,7 +164,6 @@ scale = Vector2(1.2267395, 43.77509)
 shape = SubResource("RectangleShape2D_4c57u")
 
 [connection signal="area_entered" from="Node2D/NavigationRegion2D/CharacterBody2D/Area2D" to="Node2D/NavigationRegion2D/CharacterBody2D/Area2D" method="_on_area_entered"]
-[connection signal="area_exited" from="Node2D/NavigationRegion2D/CharacterBody2D/Area2D" to="Node2D/NavigationRegion2D/CharacterBody2D/Area2D" method="_on_area_exited"]
 [connection signal="gothit" from="Node2D/NavigationRegion2D/CharacterBody2D/Area2D" to="Node2D/NavigationRegion2D/CharacterBody2D" method="_on_area_2d_gothit"]
 [connection signal="windy" from="Node2D/NavigationRegion2D/CharacterBody2D/Area2D" to="Node2D/NavigationRegion2D/CharacterBody2D" method="_on_area_2d_windy"]
 [connection signal="timeout" from="Node2D/NavigationRegion2D/CharacterBody2D/Timer" to="Node2D/NavigationRegion2D/CharacterBody2D" method="_on_timer_timeout"]
