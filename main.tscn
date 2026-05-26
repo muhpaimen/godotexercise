@@ -62,6 +62,7 @@ scale = Vector2(6.5, 6.5)
 script = ExtResource("2_h2yge")
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D/NavigationRegion2D/CharacterBody2D" unique_id=1303892457]
+z_index = 1
 texture = ExtResource("2_0xm2m")
 script = ExtResource("4_7mycd")
 
@@ -80,6 +81,8 @@ polygon = PackedVector2Array(3.2307663, 0, -1.2307701, -3.384613, -3.5384636, -1
 [node name="bigshottimer" type="Timer" parent="Node2D/NavigationRegion2D/CharacterBody2D" unique_id=414456894]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Node2D/NavigationRegion2D/CharacterBody2D" unique_id=1619694273 groups=["playnav"]]
+
+[node name="Timer2" type="Timer" parent="Node2D/NavigationRegion2D/CharacterBody2D" unique_id=88076301]
 
 [node name="bulletpattern" type="Node2D" parent="." unique_id=461631038]
 position = Vector2(922, 324)

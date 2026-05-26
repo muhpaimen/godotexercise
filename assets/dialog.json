@@ -5,17 +5,22 @@
 		"next":	"next0"
 	},
 	"next0"	:	{
-		"text":	"HAHAHAHAHAHAHa",
+		"text":	"HAHAHAHAHAHAHa FRIEND INSIDE ME PLUEY GASTER DECEMBER GENOCIDE REMEMBER TAKING TOO OLD FREEDOM MOTIF SHADOW CRYSTAL",
 		"face":	"insane",
 		"next":	"next1"
 	},
 	"next1"	:	{
 		"text":	".....eh",
 		"face":	"sad",
+		"next":	"next2"
+	},
+	"next2"	:	{
+		"text":	"YOUR NO MORE MORE",
+		"face":	"insane",
 		"next":	"end"
 	},
 	"end"	:	{
-		"text":	"YOUR NO MORE MORE",
+		"text":	"ASRIEL DUST DEVICE THEORY 1225 666 75% ROARING 25% TITAN",
 		"face":	"insane",
 		"next":	"NULL"
 	}

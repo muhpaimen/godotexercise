@@ -4,6 +4,7 @@ extends Node2D
 @onready var kamikazenemy = preload("res://kamikaze.tscn")
 @onready var wallnemy = preload("res://scenes/wallnemy.tscn")
 @onready var windarea = preload("res://scenes/windarea.tscn")
+@onready var boostcoin = preload("res://scenes/booster.tscn")
 @onready var spawnpoint = $"."
 @onready var player = $"../Node2D/NavigationRegion2D/CharacterBody2D"
 
@@ -34,7 +35,13 @@ func windstart(pos: Vector2):
 	winds.global_position = spawnpoint.global_position + pos
 	return winds
 
+func boostspawn(pos: Vector2):
+	var coin = boostcoin.instantiate()
+	add_child(coin)
+	coin.global_position = spawnpoint.global_position + pos
+
 func spawner() -> void:
+	boostspawn(Vector2(-500, 0))
 	spawn()
 	$Timer.start(0.4)
 	await $Timer.timeout

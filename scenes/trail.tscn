@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c0qj2hekfv60r"]
+
+[ext_resource type="Texture2D" uid="uid://cht1opwiequ68" path="res://assets/soulcc.png" id="1_2tjbc"]
+
+[node name="Node2D" type="Node2D" unique_id=1188998989]
+
+[node name="yeysos" type="Sprite2D" parent="." unique_id=511629780]
+texture_filter = 1
+scale = Vector2(6.4, 6.4)
+texture = ExtResource("1_2tjbc")
